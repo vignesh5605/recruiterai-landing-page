@@ -1,0 +1,555 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   RECRUITERAI DESIGN SYSTEM
+   Enterprise-Grade CSS Architecture
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@layer base {
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     ROOT VARIABLES - Semantic Design Tokens
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  :root {
+    /* Spacing Scale (8-point grid) */
+    --space-1: 0.25rem;
+    /* 4px */
+    --space-2: 0.5rem;
+    /* 8px */
+    --space-3: 0.75rem;
+    /* 12px */
+    --space-4: 1rem;
+    /* 16px */
+    --space-5: 1.25rem;
+    /* 20px */
+    --space-6: 1.5rem;
+    /* 24px */
+    --space-8: 2rem;
+    /* 32px */
+    --space-10: 2.5rem;
+    /* 40px */
+    --space-12: 3rem;
+    /* 48px */
+    --space-16: 4rem;
+    /* 64px */
+    --space-20: 5rem;
+    /* 80px */
+    --space-24: 6rem;
+    /* 96px */
+    --space-32: 8rem;
+    /* 128px */
+
+    /* Container Widths */
+    --container-max: 1400px;
+    --container-narrow: 800px;
+    --container-reading: 680px;
+
+    /* Section Spacing */
+    --section-gap: var(--space-20);
+    --section-gap-md: var(--space-24);
+    --section-gap-lg: var(--space-32);
+
+    /* Border Radius Scale */
+    --radius-sm: 0.25rem;
+    /* 4px */
+    --radius-md: 0.5rem;
+    /* 8px */
+    --radius-lg: 0.75rem;
+    /* 12px */
+    --radius-xl: 1rem;
+    /* 16px */
+    --radius-2xl: 1.25rem;
+    /* 20px */
+    --radius-3xl: 1.5rem;
+    /* 24px */
+    --radius-full: 9999px;
+
+    /* Transition Tokens */
+    --duration-fast: 150ms;
+    --duration-normal: 200ms;
+    --duration-slow: 300ms;
+    --duration-slower: 400ms;
+    --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    /* Shadow Tokens */
+    --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.02);
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px 0 rgba(0, 0, 0, 0.02);
+    --shadow-md: 0 4px 12px 0 rgba(0, 0, 0, 0.05), 0 2px 6px 0 rgba(0, 0, 0, 0.03);
+    --shadow-lg: 0 8px 24px 0 rgba(0, 0, 0, 0.06), 0 4px 12px 0 rgba(0, 0, 0, 0.04);
+    --shadow-xl: 0 16px 40px 0 rgba(0, 0, 0, 0.08), 0 8px 20px 0 rgba(0, 0, 0, 0.05);
+    --shadow-primary: 0 4px 12px 0 rgba(59, 130, 246, 0.25), 0 2px 6px 0 rgba(59, 130, 246, 0.2);
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     BASE STYLES - Foundation Layer
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* Respect user's motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    @apply text-gray-900 antialiased bg-white;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    /* OpenType features for professional typography */
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     TYPOGRAPHY SYSTEM - Professional SaaS Type Scale
+     Line-height rhythm: 1.08 → 1.12 → 1.2 → 1.25 → 1.5 → 1.6
+     Letter-spacing: -0.02 → -0.015 → -0.01 → 0
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply tracking-tight font-semibold text-gray-900;
+    text-wrap: balance;
+  }
+
+  /* Display - Hero Headlines */
+  h1 {
+    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+
+  /* Section Headlines */
+  h2 {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    font-weight: 600;
+  }
+
+  /* Subsection Headlines */
+  h3 {
+    @apply text-xl md:text-2xl;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+  }
+
+  /* Card Headlines */
+  h4 {
+    @apply text-lg md:text-xl;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+  }
+
+  /* Body Copy */
+  p {
+    line-height: 1.6;
+    @apply text-gray-600;
+  }
+
+  /* Lead paragraphs */
+  .lead {
+    @apply text-lg md:text-xl text-gray-600;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     ACCESSIBILITY - Focus States & Keyboard Navigation
+     WCAG 2.1 AA Compliant
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  *:focus {
+    outline: none;
+  }
+
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary-500;
+    outline-style: solid;
+  }
+
+  /* Enhanced focus for interactive elements */
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary-500;
+  }
+
+  /* Skip link for accessibility */
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4;
+    @apply bg-primary-500 text-white px-4 py-2 rounded-lg z-50;
+  }
+}
+
+@layer components {
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     LAYOUT SYSTEM - Unified Container & Grid
+     Max-width: 1400px with consistent gutters
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  .container-content {
+    @apply max-w-[1400px] mx-auto px-6 lg:px-8;
+  }
+
+  .container-narrow {
+    @apply max-w-[800px] mx-auto px-6 lg:px-8;
+  }
+
+  .container-reading {
+    @apply max-w-[680px] mx-auto px-6 lg:px-8;
+  }
+
+  /* Section Spacing - Consistent vertical rhythm */
+  .section {
+    @apply py-20 md:py-24 lg:py-32;
+  }
+
+  .section-compact {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+
+  .section-header {
+    @apply text-center mb-16 md:mb-20;
+  }
+
+  .section-header-compact {
+    @apply text-center mb-12 md:mb-16;
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     CARD SYSTEM - Production-grade surfaces
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  .card {
+    @apply bg-white rounded-2xl border border-gray-200;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--duration-normal) var(--ease-out);
+  }
+
+  .card:hover {
+    @apply border-gray-300;
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .card-interactive {
+    @apply cursor-pointer;
+  }
+
+  .card-subtle {
+    @apply bg-white rounded-xl border border-gray-100;
+    box-shadow: var(--shadow-xs);
+    transition: all var(--duration-normal) var(--ease-out);
+  }
+
+  .card-subtle:hover {
+    @apply border-gray-200;
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-1px);
+  }
+
+  .card-elevated {
+    @apply bg-white rounded-2xl;
+    box-shadow: var(--shadow-lg);
+    transition: all var(--duration-normal) var(--ease-out);
+  }
+
+  .card-elevated:hover {
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-4px);
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     BUTTON SYSTEM - Enterprise-grade interactions
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  .btn {
+    @apply font-medium rounded-xl inline-flex items-center justify-center;
+    @apply focus-visible:outline-2 focus-visible:outline-offset-2;
+    transition: all var(--duration-normal) var(--ease-out);
+  }
+
+  .btn-sm {
+    @apply px-4 py-2 text-sm;
+  }
+
+  .btn-md {
+    @apply px-6 py-2.5 text-sm;
+  }
+
+  .btn-lg {
+    @apply px-8 py-4 text-base;
+  }
+
+  .btn-primary {
+    @apply bg-primary-500 text-white focus-visible:outline-primary-500;
+    box-shadow: var(--shadow-sm), 0 1px 2px 0 rgba(59, 130, 246, 0.15);
+  }
+
+  .btn-primary:hover {
+    @apply bg-primary-600;
+    box-shadow: var(--shadow-md), 0 4px 12px 0 rgba(59, 130, 246, 0.25);
+    transform: translateY(-1px);
+  }
+
+  .btn-primary:active {
+    @apply bg-primary-700;
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .btn-secondary {
+    @apply bg-white text-gray-900 border border-gray-200 focus-visible:outline-primary-500;
+    box-shadow: var(--shadow-xs);
+  }
+
+  .btn-secondary:hover {
+    @apply border-gray-300 bg-gray-50;
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary:active {
+    @apply bg-gray-100;
+    transform: translateY(0);
+  }
+
+  .btn-ghost {
+    @apply text-gray-600 hover:text-gray-900 hover:bg-gray-100;
+  }
+
+  .btn-ghost:active {
+    @apply bg-gray-200;
+  }
+
+  /* Disabled state */
+  .btn:disabled,
+  .btn[disabled] {
+    @apply opacity-50 cursor-not-allowed pointer-events-none;
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     INPUT SYSTEM - Form Elements
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  .input {
+    @apply w-full px-4 py-3 rounded-xl border border-gray-200 bg-white;
+    @apply text-gray-900 placeholder:text-gray-400;
+    @apply focus-visible:border-primary-500 focus-visible:ring-2 focus-visible:ring-primary-100;
+    box-shadow: var(--shadow-xs);
+    transition: all var(--duration-normal) var(--ease-out);
+  }
+
+  .input:hover:not(:focus) {
+    @apply border-gray-300;
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     SPACING UTILITIES - 8-point System
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  .gap-section {
+    @apply gap-20 md:gap-24 lg:gap-32;
+  }
+
+  .mb-section {
+    @apply mb-20 md:mb-24 lg:mb-32;
+  }
+
+  .mb-content {
+    @apply mb-12 md:mb-16;
+  }
+
+  .mb-element {
+    @apply mb-6 md:mb-8;
+  }
+
+  .mb-tight {
+    @apply mb-3 md:mb-4;
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     BADGE SYSTEM
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  .badge-primary {
+    @apply bg-primary-50 text-primary-600;
+  }
+
+  .badge-success {
+    @apply bg-emerald-50 text-emerald-600;
+  }
+
+  .badge-neutral {
+    @apply bg-gray-100 text-gray-600;
+  }
+}
+
+@layer utilities {
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     UTILITY CLASSES - Production helpers
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  /* Text balance for better headlines */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Smooth gradient text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-primary-400;
+  }
+
+  /* Glassmorphism */
+  .glass {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    @apply bg-white/80;
+  }
+
+  .glass-strong {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    @apply bg-white/90;
+  }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    transition: all var(--duration-slow) var(--ease-out);
+  }
+
+  .transition-fast {
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  /* Hover lift effects */
+  .hover-lift {
+    transition: transform var(--duration-normal) var(--ease-out),
+      box-shadow var(--duration-normal) var(--ease-out);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+  }
+
+  .hover-lift-subtle:hover {
+    transform: translateY(-1px);
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ANIMATIONS - Smooth, Performant
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/* Infinite scroll for platform logos */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 40s linear infinite;
+  will-change: transform;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s var(--ease-out) forwards;
+}
+
+/* Slide up animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s var(--ease-out-expo) forwards;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SELECTION STYLING - Brand consistency
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+::selection {
+  background-color: rgba(59, 130, 246, 0.15);
+  color: inherit;
+}
+
+::-moz-selection {
+  background-color: rgba(59, 130, 246, 0.15);
+  color: inherit;
+}
