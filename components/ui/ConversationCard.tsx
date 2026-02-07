@@ -44,7 +44,7 @@ export default function ConversationCard({
               <p className="text-sm text-gray-500">{company}</p>
             </div>
             <p className="text-sm text-gray-700 italic leading-relaxed">
-              "{quote}"
+              &ldquo;{quote}&rdquo;
             </p>
           </div>
         </div>
